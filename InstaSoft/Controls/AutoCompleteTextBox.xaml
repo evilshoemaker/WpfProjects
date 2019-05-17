@@ -1,0 +1,119 @@
+﻿<TextBox x:Class="InstaSoft.Controls.AutoCompleteTextBox"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:local="clr-namespace:InstaSoft.Controls"
+         xmlns:global="clr-namespace:InstaSoft"
+         Style="{DynamicResource autoCompleteTextBox}"  
+         Height="32" MinWidth="30"
+         x:Name="textBox" LostFocus="TextBox_LostFocus">
+
+    <TextBox.Resources>
+        <ResourceDictionary>
+            <Style x:Key="autoCompleteTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="AllowDrop" Value="true"/>
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="/InstaSoft;component/Themes/Default/Fonts/#HelveticaNeueCyr"/>
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate >
+                            <AdornedElementPlaceholder />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <Border Name="Border" CornerRadius="5"  Background="White" 
+                                    BorderBrush="{StaticResource ComboBoxBorderColor}" BorderThickness="1" 
+                                    Padding="1">
+                                    <Grid x:Name="root">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Path x:Name="iconPath"
+                                          VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"
+                                          Margin="6 0 8 0"
+                                          Height="12"
+                                          Width="12"
+                                          Stretch="Uniform"
+                                          Fill="{Binding Path=(global:IconDependencyClass.ColorOne), RelativeSource={RelativeSource TemplatedParent}}" 
+                                          Data="{Binding Path=(global:IconDependencyClass.DataForPath), RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                                        <ScrollViewer Grid.Column="1" x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+                                        <Label Grid.Column="1" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                                        Visibility="Collapsed" Foreground="{StaticResource TextBoxWaterMarkForeground}" 
+                                        FontFamily="/InstaSoft;component/Themes/Default/Fonts/#HelveticaNeueCyr" Padding="3 0 0 0"/>
+                                    </Grid>
+                                </Border>
+
+                                <Popup x:Name="PART_Popup"
+                                       AllowsTransparency="true" 
+                                       Placement="Bottom" 
+                                       IsOpen="False"  
+                                       PopupAnimation="None"
+                                       Focusable="False"
+                                       VerticalOffset="0">
+                                    <Border x:Name="DropDownBorder"
+                                                Background="White"  
+                                                MaxHeight="200" 
+                                                MinWidth="{TemplateBinding ActualWidth}"
+                                                BorderBrush="{StaticResource ComboBoxBorderColor}" 
+                                                CornerRadius="0 0 5 5"
+                                                BorderThickness="1 0 1 1">
+
+                                        <ListBox x:Name="PART_ItemList" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"                                                     
+                                                     VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                                                     KeyboardNavigation.DirectionalNavigation="Contained" 
+                                                     Style="{StaticResource ListBoxStyle}"
+                                                     ItemContainerStyle="{StaticResource TextListBoxItemStyle}"
+                                                     ItemsSource="{Binding ElementName=textBox, Path=ItemsSource}"/>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <!--<Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBackgroundBrush}"/>
+                                    <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>-->
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="Validation.HasError" Value="true" />
+                                        <Condition SourceName="PART_Popup" Property="IsOpen" Value="False" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                    <Setter TargetName="Border" Property="Padding" Value="0" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="Red" />
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="Text" Value=""/>
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="#fbfbfb"/>
+                                </Trigger>
+                                <Trigger SourceName="PART_Popup" Property="IsOpen" Value="true">
+                                    <Setter TargetName="Border" Property="CornerRadius" Value="5 5 0 0" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+
+    </TextBox.Resources>
+
+</TextBox>

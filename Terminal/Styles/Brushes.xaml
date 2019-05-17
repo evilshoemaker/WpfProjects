@@ -1,0 +1,71 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="topLine1" Color="#F04265"/>
+    <SolidColorBrush x:Key="topLine2" Color="#FF7A7B"/>
+    <SolidColorBrush x:Key="topLine3" Color="#FFBC78"/>
+    <SolidColorBrush x:Key="topLine4" Color="#FFD86F"/>
+    <SolidColorBrush x:Key="topLine5" Color="#8AE6B3"/>
+    <SolidColorBrush x:Key="topLine6" Color="#2AD8B3"/>
+
+    <SolidColorBrush x:Key="topBar" Color="#1F1A24"/>
+
+    <SolidColorBrush x:Key="twitterPath" Color="#FF9A2A"/>
+    <SolidColorBrush x:Key="facePath" Color="#0096DB"/>
+    <SolidColorBrush x:Key="vkPath" Color="#FB27CB"/>
+    <SolidColorBrush x:Key="selfiePath" Color="#35E8B3"/>
+
+    <SolidColorBrush x:Key="aquaCash" Color="#00D9B4"/>
+    <SolidColorBrush x:Key="redCash" Color="#FF4065"/>
+    <SolidColorBrush x:Key="orangeCash" Color="#FFBC75"/>
+
+    <SolidColorBrush x:Key="separator" Color="#898990"/>
+
+    <LinearGradientBrush x:Key="TopLines" StartPoint="0,.0000001" EndPoint="1,.0000001" SpreadMethod="Repeat" >
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                
+                <GradientStop Color="#F04265" Offset="0.166667" />
+                <GradientStop Color="#F04265" Offset="0" />
+
+                <GradientStop Color="#FF7A7B" Offset="0.333336" />
+                <GradientStop Color="#FF7A7B" Offset="0.166667" />
+
+                <GradientStop Color="#FFBC78" Offset="0.500002" />
+                <GradientStop Color="#FFBC78" Offset="0.333336" />
+
+                <GradientStop Color="#FFD86F" Offset="0.666668" />
+                <GradientStop Color="#FFD86F" Offset="0.500002" />
+
+                <GradientStop Color="#8AE6B3" Offset="0.833334" />
+                <GradientStop Color="#8AE6B3" Offset="0.666668" />
+
+                <GradientStop Color="#2AD8B3" Offset="1" />
+                <GradientStop Color="#2AD8B3" Offset="0.833334" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="CashBackground" StartPoint="0,1" EndPoint="0,0" SpreadMethod="Repeat" MappingMode="RelativeToBoundingBox">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#2C212B" Offset="1" />
+                <GradientStop Color="#2C212B" Offset="0.3" />
+                <GradientStop Color="#181319" Offset="0.1" />
+                <GradientStop Color="#070508" Offset="0" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MainBackground" StartPoint="0,1" EndPoint="0,0">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#E22E2730" Offset="1" />
+                <GradientStop Color="#E22E2730" Offset="0.4" />
+                <!--<GradientStop Color="#2d272f" Offset="0.1" />-->
+                <GradientStop Color="#010101" Offset="0" />
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+</ResourceDictionary>
